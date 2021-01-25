@@ -1,0 +1,37 @@
+# Scipt to create visualisation of ...
+# Open Pymol
+# Set working directory the location of the Art_of_MD/code/ directory 
+# PyMOL> @pymol_vis.txt
+# Then save 
+reinitialize
+load ../structures/traj_R8_moreresolution_0.pdb
+
+hide all
+select loopc, resi 189-197 
+select env, byres all within 10 of loopc
+
+extract loopc_o, loopc
+extract env_o, env
+
+cartoon tube, loopc_o
+color magenta, loopc_o
+show cartoon, loopc_o
+set cartoon_tube_radius, 1.5, loopc_o
+
+cartoon tube, env_o
+show cartoon, env_o
+
+show surface, env_o
+set surface_color, white, env_o
+
+set field_of_view, 30
+set_view (\
+    -0.985200584,    0.067097202,    0.157721281,\
+     0.155235842,   -0.040786371,    0.987035453,\
+     0.072659917,    0.996910274,    0.029767033,\
+     0.000000000,    0.000000000,  -49.703037262,\
+    84.042633057,   81.586616516,  129.430404663,\
+    22.245405197,   77.160758972,  -60.000000000 )
+set ambient_occlusion_mode, 1
+set ambient_occlusion_scale, 25
+smooth all, 30, 2

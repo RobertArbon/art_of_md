@@ -1,0 +1,6 @@
+structures/
+images/content/pymol_vis/
+*.npy
+*.p
+slides/images/
+
